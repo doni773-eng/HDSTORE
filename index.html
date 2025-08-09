@@ -3,147 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HD STORE</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>Toko Imut Pink</title>
 <style>
     body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Quicksand', sans-serif;
         background-color: #ffe4ec;
         margin: 0;
         padding: 0;
-        color: #444;
     }
     header {
-        text-align: center;
-        padding: 20px;
         background-color: #ffb6c1;
+        padding: 15px;
+        text-align: center;
         color: white;
-        font-size: 24px;
-        font-weight: 600;
-        box-shadow: 0 4px 8px rgba(255, 182, 193, 0.4);
+        font-size: 1.8em;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(255, 182, 193, 0.5);
     }
     .container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
         padding: 20px;
-        max-width: 1200px;
-        margin: auto;
     }
     .card {
         background-color: white;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+        border-radius: 20px;
         overflow: hidden;
-        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 10px rgba(255, 182, 193, 0.5);
+        transition: transform 0.3s ease;
+        text-align: center;
+        padding-bottom: 15px;
     }
     .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 15px rgba(255, 182, 193, 0.5);
+        transform: scale(1.05);
     }
     .card img {
         width: 100%;
-        height: 180px;
+        height: 200px;
         object-fit: cover;
     }
-    .card-body {
-        padding: 15px;
-        text-align: center;
+    .card h3 {
+        margin: 10px 0 5px;
+        color: #ff69b4;
     }
-    .card-body h3 {
-        font-size: 18px;
-        margin-bottom: 5px;
-        color: #ff6f91;
-    }
-    .card-body p {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 10px;
+    .card p {
+        color: #555;
+        font-weight: bold;
     }
     .btn {
-        background-color: #ff85a2;
+        background-color: #ff69b4;
         color: white;
-        padding: 8px 15px;
         border: none;
+        padding: 10px 20px;
         border-radius: 20px;
         cursor: pointer;
-        transition: background-color 0.2s;
+        font-size: 1em;
+        margin-top: 10px;
+        transition: background 0.3s ease;
     }
     .btn:hover {
-        background-color: #ff6f91;
-    }
-    /* Popup */
-    .popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px 30px;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        z-index: 999;
-        text-align: center;
-        font-weight: 600;
-        color: #ff6f91;
-        animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-        from {opacity: 0;}
-        to {opacity: 1;}
-    }
-    .popup.show {
-        display: block;
+        background-color: #ff85c1;
     }
 </style>
 </head>
 <body>
 
-<header>🛍️ HD STORE</header>
+<header>🌸 Toko Imut Pink 🌸</header>
 
-<div class="container">
-    <!-- Produk 1 -->
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1616627562773-b3b0cf4f8e91?w=600" alt="Produk 1">
-        <div class="card-body">
-            <h3>Tas Lucu</h3>
-            <p>Rp 120.000</p>
-            <button class="btn" onclick="showPopup('Tas Lucu')">Beli Sekarang</button>
-        </div>
-    </div>
-    <!-- Produk 2 -->
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=600" alt="Produk 2">
-        <div class="card-body">
-            <h3>Mug Imut</h3>
-            <p>Rp 35.000</p>
-            <button class="btn" onclick="showPopup('Mug Imut')">Beli Sekarang</button>
-        </div>
-    </div>
-    <!-- Produk 3 -->
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1578321272171-04ba529f0b90?w=600" alt="Produk 3">
-        <div class="card-body">
-            <h3>Boneka Pink</h3>
-            <p>Rp 75.000</p>
-            <button class="btn" onclick="showPopup('Boneka Pink')">Beli Sekarang</button>
-        </div>
-    </div>
+<div class="container" id="product-list">
+    <!-- Produk akan ditambahkan via JavaScript -->
 </div>
 
-<!-- Popup -->
-<div id="popup" class="popup"></div>
-
 <script>
-function showPopup(productName) {
-    let popup = document.getElementById('popup');
-    popup.innerHTML = `💖 ${productName} berhasil ditambahkan ke keranjang!`;
-    popup.classList.add('show');
-    setTimeout(() => {
-        popup.classList.remove('show');
-    }, 2000);
-}
+    // Daftar produk
+    const products = [
+        {
+            name: "Boneka Beruang Pink",
+            price: "Rp 120.000",
+            img: "https://i.pinimg.com/736x/5a/15/6e/5a156ee37c483fa971a4c66cfb4470d2.jpg"
+        },
+        {
+            name: "Cangkir Hello Kitty",
+            price: "Rp 55.000",
+            img: "https://i.pinimg.com/736x/0d/e6/48/0de648b3e4240d6b4e78684978b623c7.jpg"
+        },
+        {
+            name: "Tas Imut Pink",
+            price: "Rp 150.000",
+            img: "https://i.pinimg.com/736x/d2/d4/b6/d2d4b66cb42a9300b94ac021ed7f8a1e.jpg"
+        }
+    ];
+
+    const phoneNumber = "628123456789"; // Ganti dengan nomor WhatsApp kamu
+
+    const productList = document.getElementById("product-list");
+
+    products.forEach(product => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+            <img src="${product.img}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.price}</p>
+            <button class="btn">Beli Sekarang</button>
+        `;
+        
+        card.querySelector(".btn").addEventListener("click", () => {
+            const message = `Halo, saya ingin membeli ${product.name}`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank");
+        });
+
+        productList.appendChild(card);
+    });
 </script>
 
 </body>
