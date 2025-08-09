@@ -3,121 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toko Imut Pink</title>
+<title>Toko Imut</title>
 <style>
-    body {
-        font-family: 'Quicksand', sans-serif;
-        background-color: #ffe4ec;
-        margin: 0;
-        padding: 0;
-    }
-    header {
-        background-color: #ffb6c1;
-        padding: 15px;
-        text-align: center;
-        color: white;
-        font-size: 1.8em;
-        font-weight: bold;
-        box-shadow: 0 4px 8px rgba(255, 182, 193, 0.5);
-    }
-    .container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        padding: 20px;
-    }
-    .card {
-        background-color: white;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 4px 10px rgba(255, 182, 193, 0.5);
-        transition: transform 0.3s ease;
-        text-align: center;
-        padding-bottom: 15px;
-    }
-    .card:hover {
-        transform: scale(1.05);
-    }
-    .card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-    .card h3 {
-        margin: 10px 0 5px;
-        color: #ff69b4;
-    }
-    .card p {
-        color: #555;
-        font-weight: bold;
-    }
-    .btn {
-        background-color: #ff69b4;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 1em;
-        margin-top: 10px;
-        transition: background 0.3s ease;
-    }
-    .btn:hover {
-        background-color: #ff85c1;
-    }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffe6f0;
+    text-align: center;
+    padding: 20px;
+  }
+
+  h1 {
+    color: #ff4d94;
+  }
+
+  .produk {
+    display: inline-block;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+    margin: 15px;
+    padding: 15px;
+    width: 220px;
+    transition: transform 0.3s ease;
+  }
+
+  .produk:hover {
+    transform: scale(1.05);
+  }
+
+  .produk img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; /* potong gambar biar proporsinya tetap */
+    border-radius: 10px;
+  }
+
+  .produk h3 {
+    margin: 10px 0 5px;
+    color: #ff4d94;
+  }
+
+  .produk p {
+    margin: 5px 0;
+    font-weight: bold;
+    color: #ff66b3;
+  }
+
+  .produk button {
+    background-color: #ff80bf;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .produk button:hover {
+    background-color: #ff4d94;
+  }
 </style>
 </head>
 <body>
 
-<header>🌸 Toko Imut Pink 🌸</header>
+<h1>✨ Toko Imut ✨</h1>
 
-<div class="container" id="product-list">
-    <!-- Produk akan ditambahkan via JavaScript -->
+<div class="produk">
+  <img src="https://i.imgur.com/6qK2vJt.jpeg" alt="Produk 1">
+  <h3>Tas Lucu</h3>
+  <p>Rp 75.000</p>
+  <button>Beli Sekarang</button>
 </div>
 
-<script>
-    // Daftar produk
-    const products = [
-        {
-            name: "Jilbab Paris",
-            price: "Rp 25.000",
-            img: "https://down-id.img.susercontent.com/file/97580cac957d69c84a1b04340071561a?a=500"
-        },
-        {
-            name: "Cangkir Hello Kitty",
-            price: "Rp 55.000",
-            img: "https://i.pinimg.com/736x/0d/e6/48/0de648b3e4240d6b4e78684978b623c7.jpg"
-        },
-        {
-            name: "Tas Imut Pink",
-            price: "Rp 150.000",
-            img: "https://i.pinimg.com/736x/d2/d4/b6/d2d4b66cb42a9300b94ac021ed7f8a1e.jpg"
-        }
-    ];
+<div class="produk">
+  <img src="https://i.imgur.com/z9Yx1xE.jpeg" alt="Produk 2">
+  <h3>Boneka Teddy</h3>
+  <p>Rp 50.000</p>
+  <button>Beli Sekarang</button>
+</div>
 
-    const phoneNumber = "6282372180715"; // Ganti dengan nomor WhatsApp kamu
-
-    const productList = document.getElementById("product-list");
-
-    products.forEach(product => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.innerHTML = `
-            <img src="${product.img}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>${product.price}</p>
-            <button class="btn">Beli Sekarang</button>
-        `;
-        
-        card.querySelector(".btn").addEventListener("click", () => {
-            const message = `Halo, saya ingin membeli ${product.name}`;
-            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.open(url, "_blank");
-        });
-
-        productList.appendChild(card);
-    });
-</script>
+<div class="produk">
+  <img src="https://i.imgur.com/Z5IvJqz.jpeg" alt="Produk 3">
+  <h3>Cup Cake</h3>
+  <p>Rp 25.000</p>
+  <button>Beli Sekarang</button>
+</div>
 
 </body>
 </html>
