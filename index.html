@@ -23,4 +23,128 @@
         box-shadow: 0 4px 8px rgba(255, 182, 193, 0.4);
     }
     .container {
-        display
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .card {
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(255, 182, 193, 0.5);
+    }
+    .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+    .card-body {
+        padding: 15px;
+        text-align: center;
+    }
+    .card-body h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: #ff6f91;
+    }
+    .card-body p {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .btn {
+        background-color: #ff85a2;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .btn:hover {
+        background-color: #ff6f91;
+    }
+    /* Popup */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        z-index: 999;
+        text-align: center;
+        font-weight: 600;
+        color: #ff6f91;
+        animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+    .popup.show {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<header>🛍️ Toko Imut Pink</header>
+
+<div class="container">
+    <!-- Produk 1 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1616627562773-b3b0cf4f8e91?w=600" alt="Produk 1">
+        <div class="card-body">
+            <h3>Tas Lucu</h3>
+            <p>Rp 120.000</p>
+            <button class="btn" onclick="showPopup('Tas Lucu')">Beli Sekarang</button>
+        </div>
+    </div>
+    <!-- Produk 2 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=600" alt="Produk 2">
+        <div class="card-body">
+            <h3>Mug Imut</h3>
+            <p>Rp 35.000</p>
+            <button class="btn" onclick="showPopup('Mug Imut')">Beli Sekarang</button>
+        </div>
+    </div>
+    <!-- Produk 3 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1578321272171-04ba529f0b90?w=600" alt="Produk 3">
+        <div class="card-body">
+            <h3>Boneka Pink</h3>
+            <p>Rp 75.000</p>
+            <button class="btn" onclick="showPopup('Boneka Pink')">Beli Sekarang</button>
+        </div>
+    </div>
+</div>
+
+<!-- Popup -->
+<div id="popup" class="popup"></div>
+
+<script>
+function showPopup(productName) {
+    let popup = document.getElementById('popup');
+    popup.innerHTML = `💖 ${productName} berhasil ditambahkan ke keranjang!`;
+    popup.classList.add('show');
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
