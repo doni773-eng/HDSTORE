@@ -8,46 +8,54 @@
 <style>
     body {
         font-family: 'Poppins', sans-serif;
-        background-color: #ffe6f0;
         margin: 0;
         padding: 0;
-        text-align: center;
         background-image: url('https://i.pinimg.com/736x/d5/cd/7e/d5cd7ebea4cb07e6a60f5e7c0a6170b8.jpg');
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
+        backdrop-filter: blur(4px);
     }
     header {
-        background-color: rgba(255, 182, 193, 0.9);
+        background: linear-gradient(135deg, rgba(255,182,193,0.9), rgba(255,105,180,0.9));
         padding: 20px;
-        font-size: 24px;
+        font-size: 26px;
         font-weight: bold;
         color: white;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        letter-spacing: 1px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
     }
     .container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        padding: 20px;
+        gap: 25px;
+        padding: 30px;
     }
     .card {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.85);
         border-radius: 20px;
         padding: 15px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(6px);
     }
     .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 10px 25px rgba(255,105,180,0.3);
     }
     .card img {
         width: 100%;
-        height: 200px;
+        height: 220px;
         object-fit: cover;
         border-radius: 15px;
         cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    .card img:hover {
+        transform: scale(1.05);
     }
     .card h3 {
         font-size: 18px;
@@ -60,17 +68,18 @@
         margin-bottom: 10px;
     }
     .btn {
-        background-color: #ff80a1;
+        background: linear-gradient(135deg, #ff80a1, #ff4d6d);
         color: white;
-        padding: 10px 15px;
-        border-radius: 25px;
+        padding: 10px 18px;
+        border-radius: 30px;
         border: none;
         cursor: pointer;
         font-weight: bold;
-        transition: background-color 0.3s ease;
+        transition: all 0.3s ease;
     }
     .btn:hover {
-        background-color: #ff4d6d;
+        background: linear-gradient(135deg, #ff4d6d, #ff80a1);
+        transform: scale(1.05);
     }
 
     /* Pop-up Style */
@@ -82,21 +91,23 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,0.6);
+        background-color: rgba(0,0,0,0.5);
         justify-content: center;
         align-items: center;
     }
     .popup-content {
-        background-color: white;
+        background: linear-gradient(135deg, #fff0f6, #ffe6f0);
         padding: 20px;
         border-radius: 20px;
         text-align: center;
-        width: 300px;
+        width: 320px;
         animation: pop 0.3s ease;
+        box-shadow: 0 8px 20px rgba(255,105,180,0.3);
     }
     .popup-content img {
         width: 100%;
         border-radius: 15px;
+        margin-bottom: 10px;
     }
     @keyframes pop {
         from {transform: scale(0.5);}
@@ -107,7 +118,9 @@
         font-size: 20px;
         font-weight: bold;
         cursor: pointer;
-        float: right;
+        position: absolute;
+        top: 15px;
+        right: 20px;
     }
 </style>
 </head>
@@ -131,21 +144,9 @@
 const nomorWA = "6282372180715"; 
 
 const produk = [
-    {
-        nama: "Jilbab Paris",
-        harga: "Rp 25.000",
-        gambar: "https://i.pinimg.com/564x/6a/15/2d/6a152d03f35a9c76b4fbe4e06c3f4ee2.jpg"
-    },
-    {
-        nama: "Gelas Karakter",
-        harga: "Rp 45.000",
-        gambar: "https://i.pinimg.com/564x/b0/cf/94/b0cf94e8d4c68d0dc245eeaf0ff5a3fc.jpg"
-    },
-    {
-        nama: "Boneka Kelinci",
-        harga: "Rp 95.000",
-        gambar: "https://i.pinimg.com/564x/c1/cf/47/c1cf472f93d2a1e246f02cfe72f3f80b.jpg"
-    }
+    { nama: "Jilbab Paris", harga: "Rp 25.000", gambar: "https://i.pinimg.com/564x/6a/15/2d/6a152d03f35a9c76b4fbe4e06c3f4ee2.jpg" },
+    { nama: "Gelas Karakter", harga: "Rp 45.000", gambar: "https://i.pinimg.com/564x/b0/cf/94/b0cf94e8d4c68d0dc245eeaf0ff5a3fc.jpg" },
+    { nama: "Boneka Kelinci", harga: "Rp 95.000", gambar: "https://i.pinimg.com/564x/c1/cf/47/c1cf472f93d2a1e246f02cfe72f3f80b.jpg" }
 ];
 
 const container = document.getElementById("product-list");
