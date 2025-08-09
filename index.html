@@ -12,9 +12,13 @@
         margin: 0;
         padding: 0;
         text-align: center;
+        background-image: url('https://i.pinimg.com/736x/d5/cd/7e/d5cd7ebea4cb07e6a60f5e7c0a6170b8.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
     }
     header {
-        background-color: #ffb6c1;
+        background-color: rgba(255, 182, 193, 0.9);
         padding: 20px;
         font-size: 24px;
         font-weight: bold;
@@ -28,7 +32,7 @@
         padding: 20px;
     }
     .card {
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 20px;
         padding: 15px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -40,9 +44,10 @@
     }
     .card img {
         width: 100%;
-        height: 200px; /* Tinggi seragam */
-        object-fit: cover; /* Biar proporsional */
+        height: 200px;
+        object-fit: cover;
         border-radius: 15px;
+        cursor: pointer;
     }
     .card h3 {
         font-size: 18px;
@@ -67,34 +72,79 @@
     .btn:hover {
         background-color: #ff4d6d;
     }
+
+    /* Pop-up Style */
+    .popup {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        justify-content: center;
+        align-items: center;
+    }
+    .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 20px;
+        text-align: center;
+        width: 300px;
+        animation: pop 0.3s ease;
+    }
+    .popup-content img {
+        width: 100%;
+        border-radius: 15px;
+    }
+    @keyframes pop {
+        from {transform: scale(0.5);}
+        to {transform: scale(1);}
+    }
+    .close {
+        color: #ff4d6d;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        float: right;
+    }
 </style>
 </head>
 <body>
 
-<header>🌸 Toko HD STORE🌸</header>
+<header>🌸 HD STORE 🌸</header>
 
-<div class="container" id="product-list">
-    <!-- Produk ditambahkan lewat JS -->
+<div class="container" id="product-list"></div>
+
+<!-- Pop-up -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <img id="popup-img" src="" alt="">
+        <h3 id="popup-nama"></h3>
+        <p id="popup-harga"></p>
+    </div>
 </div>
 
 <script>
-const nomorWA = "6282372180715"; // Ganti dengan nomor WhatsApp kamu
+const nomorWA = "6282372180715"; 
 
 const produk = [
     {
         nama: "Jilbab Paris",
         harga: "Rp 25.000",
-        gambar: "https://down-id.img.susercontent.com/file/97580cac957d69c84a1b04340071561a"
+        gambar: "https://i.pinimg.com/564x/6a/15/2d/6a152d03f35a9c76b4fbe4e06c3f4ee2.jpg"
     },
     {
         nama: "Gelas Karakter",
         harga: "Rp 45.000",
-        gambar: "https://tse2.mm.bing.net/th/id/OIP.KBbWZjD2R10qYXVMSFCKiQHaHa?pid=Api&P=0&h=180"
+        gambar: "https://i.pinimg.com/564x/b0/cf/94/b0cf94e8d4c68d0dc245eeaf0ff5a3fc.jpg"
     },
     {
         nama: "Boneka Kelinci",
         harga: "Rp 95.000",
-        gambar: "https://tse1.mm.bing.net/th/id/OIP.Nyi0nAYjXc6MgCPGir54BwHaHa?pid=Api&P=0&h=180"
+        gambar: "https://i.pinimg.com/564x/c1/cf/47/c1cf472f93d2a1e246f02cfe72f3f80b.jpg"
     }
 ];
 
@@ -104,7 +154,7 @@ produk.forEach(item => {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-        <img src="${item.gambar}" alt="${item.nama}">
+        <img src="${item.gambar}" alt="${item.nama}" onclick="showPopup('${item.gambar}','${item.nama}','${item.harga}')">
         <h3>${item.nama}</h3>
         <p>${item.harga}</p>
         <button class="btn" onclick="beliProduk('${item.nama}')">Beli Sekarang</button>
@@ -116,6 +166,17 @@ function beliProduk(namaProduk) {
     const pesan = `Halo, saya ingin membeli ${namaProduk}`;
     const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
     window.open(url, "_blank");
+}
+
+function showPopup(gambar, nama, harga) {
+    document.getElementById("popup-img").src = gambar;
+    document.getElementById("popup-nama").innerText = nama;
+    document.getElementById("popup-harga").innerText = harga;
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
 }
 </script>
 
