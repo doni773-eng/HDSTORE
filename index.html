@@ -1,105 +1,122 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Imut</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #ffe6f0;
-            margin: 0;
-            padding: 0;
-            color: #444;
-        }
-        header {
-            text-align: center;
-            padding: 20px;
-            background-color: #ffb6c1;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-            gap: 20px;
-        }
-        .card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-            width: 250px;
-            text-align: center;
-            padding: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 8px 12px rgba(0,0,0,0.2);
-        }
-        .card img {
-            width: 200px; /* ukuran gambar */
-            height: 200px; /* ukuran gambar */
-            object-fit: cover; /* menjaga proporsi gambar */
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-        .product-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: #ff4d88;
-        }
-        .price {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .btn {
-            background-color: #ff4d88;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #e6005c;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toko Imut Pink Pastel</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #ffe6f0;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    header {
+        background-color: #ffb6c1;
+        padding: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+    .card {
+        background-color: white;
+        border-radius: 20px;
+        padding: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .card img {
+        width: 100%;
+        height: 200px; /* Tinggi seragam */
+        object-fit: cover; /* Biar proporsional */
+        border-radius: 15px;
+    }
+    .card h3 {
+        font-size: 18px;
+        margin: 10px 0 5px;
+        color: #ff4d6d;
+    }
+    .card p {
+        color: #ff80a1;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .btn {
+        background-color: #ff80a1;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+        background-color: #ff4d6d;
+    }
+</style>
 </head>
 <body>
 
-<header>🛍️ Toko Imut Pink Pastel 💖</header>
+<header>🌸 Toko Imut Pink Pastel 🌸</header>
 
-<div class="container">
-    <div class="card">
-        <img src="https://down-id.img.susercontent.com/file/97580cac957d69c84a1b04340071561a.jpg" alt="Produk 1">
-        <div class="product-name">Jilbab Paris</div>
-        <div class="price">Rp 25.000</div>
-        <button class="btn" onclick="beliProduk('Boneka Kucing', '50000')">Beli Sekarang</button>
-    </div>
-    <div class="card">
-        <img src="https://i.pinimg.com/736x/28/6b/2c/286b2c19281364b3b3dbd977e89167dc.jpg" alt="Produk 2">
-        <div class="product-name">Cangkir Lucu</div>
-        <div class="price">Rp 25.000</div>
-        <button class="btn" onclick="beliProduk('Cangkir Lucu', '25000')">Beli Sekarang</button>
-    </div>
+<div class="container" id="product-list">
+    <!-- Produk ditambahkan lewat JS -->
 </div>
 
 <script>
-    function beliProduk(namaProduk, harga) {
-        let nomorWA = "6282372180312"; // Ganti dengan nomor WhatsApp kamu (tanpa +)
-        let pesan = `Halo, saya ingin membeli ${namaProduk} seharga Rp ${harga}. Apakah masih tersedia?`;
-        let url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
-        window.open(url, '_blank');
+const nomorWA = "6282372180715"; // Ganti dengan nomor WhatsApp kamu
+
+const produk = [
+    {
+        nama: "Jilbab Paris",
+        harga: "Rp 25.000",
+        gambar: "https://down-id.img.susercontent.com/file/97580cac957d69c84a1b04340071561a"
+    },
+    {
+        nama: "Gelas Karakter",
+        harga: "Rp 45.000",
+        gambar: "https://i.pinimg.com/564x/bd/39/93/bd399300ef042b91ff2dcf3cfeb4fc9c.jpg"
+    },
+    {
+        nama: "Boneka Kelinci",
+        harga: "Rp 95.000",
+        gambar: "https://i.pinimg.com/564x/5d/28/0f/5d280f259a9b1f5e2eea2f5a1a828be8.jpg"
     }
+];
+
+const container = document.getElementById("product-list");
+
+produk.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+        <img src="${item.gambar}" alt="${item.nama}">
+        <h3>${item.nama}</h3>
+        <p>${item.harga}</p>
+        <button class="btn" onclick="beliProduk('${item.nama}')">Beli Sekarang</button>
+    `;
+    container.appendChild(card);
+});
+
+function beliProduk(namaProduk) {
+    const pesan = `Halo, saya ingin membeli ${namaProduk}`;
+    const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+    window.open(url, "_blank");
+}
 </script>
 
 </body>
